@@ -27,7 +27,7 @@ const PokemonDetail = () => {
           const chainId = specieData.evolution_chain.url.split("/").at(-2);
           const res = await getEvolutionChainById(chainId);
           setEvolutionChain(res);
-          const evol1 = res.chain.species;
+          const evol1 = res?.chain?.species;
           setFirst(evol1);
           if (res.chain.evolves_to?.length) {
             const evol2 = [];
@@ -46,7 +46,6 @@ const PokemonDetail = () => {
   return (
     <div className="flex flex-col bg-neutral-100">
       <Header />
-
       <h1 className="uppercase font-bold text-5xl text-center my-10">
         {pokemon.name}
       </h1>
@@ -70,9 +69,16 @@ const PokemonDetail = () => {
               </h3>
               <p className="text-center">{pokemon.weight / 10}Kg</p>
             </div>
+            {specie && (
+              <div className="flex flex-col">
+                <h3 className="uppercase font-bold text-2xl text-center">
+                  habitat
+                </h3>
+                <p className="text-center">{specie?.habitat?.name}</p>
+              </div>
+            )}
           </div>
         </div>
-
         <div className="flex flex-row  mx-5 my-10 gap-5 ">
           <div>
             <h2 className="uppercase font-bold text-2xl text-center">Type</h2>
@@ -118,17 +124,15 @@ const PokemonDetail = () => {
             />
           </div>
         )}
-
         <div className="flex flex-col">
           {evolutionChain && (
             <h1 className="uppercase font-bold text-2xl text-center">
               Evoluion chain: {evolutionChain.id}
             </h1>
           )}
-
           {first && (
             <div className="flex flex-col h-full items-center">
-              <Link to={`/pokedex/${first}`}>
+              <Link to={`/pokedex/${first?.url?.split("/").at(-2)}`}>
                 <img
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${first?.url
                     ?.split("/")
