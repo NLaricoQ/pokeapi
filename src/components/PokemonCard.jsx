@@ -29,7 +29,7 @@ const PokemonCard = ({ pokemonId }) => {
       } else if (backgroundName === "rock") {
         setBgColor("bg-yellow-500");
       } else if (backgroundName === "bug") {
-        setBgColor("bg-lime-400");
+        setBgColor("bg-teal-800");
       } else if (backgroundName === "ghost") {
         setBgColor("bg-purple-950");
       } else if (backgroundName === "steel") {
@@ -42,7 +42,7 @@ const PokemonCard = ({ pokemonId }) => {
         setBgColor("bg-green-600");
       } else if (backgroundName === "electric") {
         setBgColor("bg-yellow-300");
-      } else if (backgroundName === "phychic") {
+      } else if (backgroundName === "psychic") {
         setBgColor("bg-fuchsia-300");
       } else if (backgroundName === "ice") {
         setBgColor("bg-sky-300");
@@ -65,7 +65,7 @@ const PokemonCard = ({ pokemonId }) => {
   const name = pokemonData ? pokemonData.name.toUpperCase() : "";
   return (
     <>
-      <article>
+      <article className="flex justify-center items-center">
         {!pokemonData && <Loader />}
         {pokemonData && (
           <div
@@ -81,7 +81,9 @@ const PokemonCard = ({ pokemonId }) => {
                     : "https://i.pinimg.com/originals/46/e7/7e/46e77e3db6a6cdce8c63a9de331f31ff.png"
                 }
               />
-              <h1 className="font-bold text-3xl mb-3">{name}</h1>
+              <h1 className="font-bold text-3xl mb-3 text-white">
+                {name} #{pokemonData.id}
+              </h1>
 
               <div className="flex flex-row justify-evenly w-full">
                 {pokemonData.types.map((pokemon) => (
@@ -96,8 +98,8 @@ const PokemonCard = ({ pokemonId }) => {
               <ul className="grid grid-cols-2 gap-7 m-5">
                 {stats.map((stat) => (
                   <li key={stat.stat.name}>
-                    <span>
-                      <span className="font-bold">
+                    <span className="text-white">
+                      <span className="font-bold  text-white">
                         {stat.stat.name.toUpperCase()}
                       </span>{" "}
                       : {stat.base_stat}

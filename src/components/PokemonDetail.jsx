@@ -9,10 +9,8 @@ const PokemonDetail = () => {
   const { pokemonId } = useParams();
 
   const [pokemon, setPokemon] = useState({});
-
   const [specie, setSpecie] = useState({});
   const [evolutionChain, setEvolutionChain] = useState({});
-
   const [first, setFirst] = useState(null);
   const [second, setSecond] = useState([]);
 
@@ -27,18 +25,13 @@ const PokemonDetail = () => {
 
         if (specieData?.evolution_chain?.url) {
           const chainId = specieData.evolution_chain.url.split("/").at(-2);
-
           const res = await getEvolutionChainById(chainId);
-
           setEvolutionChain(res);
-          const evol1Url = res.chain.species.url.split("/").at(-2);
-          setFirst(evol1Url);
-
+          const evol1 = res.chain.species;
+          setFirst(evol1);
           if (res.chain.evolves_to?.length) {
-            let evol2 = [];
-            let evol2Url = [];
+            const evol2 = [];
             res.chain.evolves_to.map((e) => evol2.push(e));
-            evol2.map((e) => evol2Url.push(e.species?.url?.split("/").at(-2)));
             setSecond(evol2);
           }
         }
@@ -137,21 +130,29 @@ const PokemonDetail = () => {
             <div className="flex flex-col h-full items-center">
               <Link to={`/pokedex/${first}`}>
                 <img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${first}.png`}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${first?.url
+                    ?.split("/")
+                    .at(-2)}.png`}
                 />
+                <p className="uppercase font-bold text-2xl text-center">
+                  {first?.name}
+                </p>
               </Link>
             </div>
           )}
           {second && (
             <div>
               {second.map((e, i) => (
-                <div key={i} className="flex items-center flex-col">
+                <div key={i} className="flex items-center flex-col ">
                   <Link to={`/pokedex/${e.species?.url?.split("/").at(-2)}`}>
                     <img
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.species?.url
                         ?.split("/")
                         .at(-2)}.png`}
                     />
+                    <p className="uppercase font-bold text-2xl text-center">
+                      {e.species?.name}
+                    </p>
                   </Link>
 
                   <ul className="flex items-center">
@@ -169,6 +170,9 @@ const PokemonDetail = () => {
                                   ?.split("/")
                                   .at(-2)}.png`}
                               />
+                              <p className="uppercase font-bold text-2xl text-center">
+                                {e.species?.name}
+                              </p>
                             </Link>
                           </li>
                         ))}

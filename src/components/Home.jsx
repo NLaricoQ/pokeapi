@@ -36,10 +36,15 @@ const Home = () => {
           alt="pokedex"
         />
         <div className="rounded flex flex-col  items-center  bg-transparent my-20 gap-5 mx-10 ">
-          <h2 className="text-4xl font-bold text-red-300">Welcome Trainer</h2>
+          <h2 className="text-4xl font-bold text-white font-bold">
+            Welcome Trainer
+          </h2>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center gap-5">
-              <label className="text-3xl text-red-50" htmlFor="username">
+              <label
+                className="text-3xl text-white font-bold"
+                htmlFor="username"
+              >
                 Write your name before start
               </label>
               <input
@@ -53,7 +58,7 @@ const Home = () => {
             <div className="flex items-center my-5 justify-center">
               <button
                 type="submit"
-                className="bg-white p-2"
+                className="bg-white p-2 font-bold"
                 onClick={handlePage}
               >
                 Start Adventure!
