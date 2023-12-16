@@ -24,11 +24,24 @@ const PokemonList = ({ pokemons }) => {
 
   return (
     <section>
-      <button onClick={previousPage}>Back</button>
-      <h1>
-        Page: {current} of {total}
-      </h1>
-      <button onClick={nextPage}>Next</button>
+      <div className="my-5 flex flex-row justify-center gap-5">
+        <button
+          className="border-2 p-2 bg-black text-white uppercase font-bold"
+          onClick={previousPage}
+        >
+          Back
+        </button>
+        <h1 className="border-2 p-2 bg-black text-white font-bold">
+          Page: {current} of {total}
+        </h1>
+        <button
+          className="border-2 p-2 bg-black text-white uppercase font-bold"
+          onClick={nextPage}
+        >
+          Next
+        </button>
+      </div>
+
       <ul className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {filteredPokemons().map((pokemon) => (
           <li key={pokemon.url}>
@@ -38,6 +51,23 @@ const PokemonList = ({ pokemons }) => {
           </li>
         ))}
       </ul>
+      <div className="pb-5  flex flex-row justify-center gap-5">
+        <button
+          className="border-2 p-2 bg-black text-white uppercase font-bold"
+          onClick={previousPage}
+        >
+          Back
+        </button>
+        <h1 className="border-2 p-2 bg-black text-white  font-bold">
+          Page: {current} of {total}
+        </h1>
+        <button
+          className="border-2 p-2 bg-black text-white uppercase font-bold"
+          onClick={nextPage}
+        >
+          Next
+        </button>
+      </div>
     </section>
   );
 };

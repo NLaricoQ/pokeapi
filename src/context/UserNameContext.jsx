@@ -4,6 +4,7 @@ export const UserNameContext = createContext(null);
 
 export const UserNameProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(0);
+
   const [userName, setUserName] = useState(
     localStorage.getItem("userName") ?? ""
   );

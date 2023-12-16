@@ -26,7 +26,6 @@ const FilterForm = ({ nameInitial, typeInitial }) => {
     const loadTypes = async () => {
       const typesList = await getAllTypes();
       setTypes(typesList);
-      console.log(typesList);
     };
     loadTypes();
   }, []);
@@ -36,33 +35,33 @@ const FilterForm = ({ nameInitial, typeInitial }) => {
   }, [nameInitial, typeInitial]);
 
   return (
-    <Form className="flex flex-col">
-      <h2>Search Filter</h2>
-      <div>
+    <Form className="flex flex-col mx-10">
+      <div className="flex flex-col items-center gap-5">
         <input
-          className="p-2 rounded-md"
+          className="p-2 rounded-md w-3/4 lg:w-1/2"
           type="text"
           placeholder="Pokemon name"
           name="pokemonName"
           value={pokemonName}
           onChange={handleChange}
         />
-
-        <button
-          type="submit"
-          className="p-2 rounded-md w-1/2 "
-          onClick={handlePage}
-        >
-          Search
-        </button>
-        <select name="pokemonType" value={typeValue} onChange={handleSelect}>
-          <option value="">All</option>
-          {types.map((type) => (
-            <option key={type.id} value={type.id}>
-              {type.name}
-            </option>
-          ))}
-        </select>
+        <div className="flex flex-row gap-5">
+          <select name="pokemonType" value={typeValue} onChange={handleSelect}>
+            <option value="">All</option>
+            {types.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="submit"
+            className="border-2 p-2 bg-slate-950 text-white uppercase font-bold"
+            onClick={handlePage}
+          >
+            Search
+          </button>
+        </div>
       </div>
     </Form>
   );

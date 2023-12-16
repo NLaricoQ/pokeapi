@@ -3,17 +3,32 @@ import { UserNameContext } from "../context/UserNameContext";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { removeUserName } = useContext(UserNameContext);
+  const { removeUserName, setCurrentPage } = useContext(UserNameContext);
   const navigate = useNavigate();
 
+  const home = () => {
+    setCurrentPage(0);
+    navigate("/pokedex");
+  };
   const logout = () => {
     removeUserName();
     navigate("/");
   };
   return (
-    <div className="bg-red-500 h-36">
-      <h1>Pokedex</h1>
-      <button onClick={logout}>Logout</button>
+    <div className="bg-red-500 h-20 lg:h-32 flex flex-row justify-between ">
+      <button onClick={home}>
+        <img
+          className="h-full mx-5"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/2052px-Pok%C3%A9_Ball_icon.svg.png"
+        />
+      </button>
+
+      <button onClick={logout}>
+        <img
+          className="h-full mx-5"
+          src="https://icons.veryicon.com/png/o/miscellaneous/unicons/exit-14.png"
+        />
+      </button>
     </div>
   );
 };

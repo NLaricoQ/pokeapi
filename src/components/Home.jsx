@@ -31,12 +31,12 @@ const Home = () => {
         }}
       >
         <img
-          className="w-1/2 my-10 sm:h-1/8"
+          className="w-3/4 md:w-1/4 my-10 "
           src="https://pokedex-vuejs-lucasdev.vercel.app/img/logo.17f7b40c.svg"
           alt="pokedex"
         />
-        <div className="rounded flex flex-col  items-center  bg-transparent my-20 gap-5 ">
-          <h2 className="text-5xl text-red-300">Welcome Trainer</h2>
+        <div className="rounded flex flex-col  items-center  bg-transparent my-20 gap-5 mx-10 ">
+          <h2 className="text-4xl font-bold text-red-300">Welcome Trainer</h2>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center gap-5">
               <label className="text-3xl text-red-50" htmlFor="username">

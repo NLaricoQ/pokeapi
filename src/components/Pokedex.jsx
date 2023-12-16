@@ -15,11 +15,14 @@ const Pokedex = () => {
   return (
     <>
       <Header />
-      <div className="bg-gradient-to-r from-red-900 to-red-950">
-        <h1 className="h-24">Bienvenido {userName}</h1>
+      <div className="bg-neutral-100 ">
+        <h1 className=" mx-10  mb-10 text-xl lg:text-4xl font-bold pt-5">
+          Welcome to this adventure {userName}, you can find your favorite
+          Pokemon here!
+        </h1>
         <FilterForm nameInitial={pokemonName} typeInitial={pokemonType} />
         {!pokemons.length ? (
-          <p>No Pokemons</p>
+          <p className="m-10 text-center">POKEMON NOT FOUND</p>
         ) : (
           <PokemonList pokemons={pokemons} />
         )}
